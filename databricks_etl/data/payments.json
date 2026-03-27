@@ -1,0 +1,20 @@
+[
+  {"payment_id": "PAY001", "order_id": "ORD001", "amount": 59.98, "payment_method": "credit_card", "payment_date": "2024-01-15", "status": "completed"},
+  {"payment_id": "PAY002", "order_id": "ORD002", "amount": 149.99, "payment_method": "debit_card", "payment_date": "2024-01-15", "status": "completed"},
+  {"payment_id": "PAY003", "order_id": "ORD003", "amount": 29.97, "payment_method": "paypal", "payment_date": "2024-01-16", "status": "completed"},
+  {"payment_id": "PAY004", "order_id": "ORD005", "amount": 159.98, "payment_method": "credit_card", "payment_date": "2024-01-17", "status": "completed"},
+  {"payment_id": "PAY005", "order_id": "ORD006", "amount": 199.99, "payment_method": "credit_card", "payment_date": "2024-01-17", "status": "completed"},
+  {"payment_id": "PAY006", "order_id": "ORD008", "amount": 49.95, "payment_method": "debit_card", "payment_date": "2024-01-18", "status": "completed"},
+  {"payment_id": "PAY007", "order_id": "ORD009", "amount": 299.99, "payment_method": "credit_card", "payment_date": "2024-01-19", "status": "completed"},
+  {"payment_id": "PAY008", "order_id": "ORD011", "amount": 119.96, "payment_method": "paypal", "payment_date": "2024-01-20", "status": "completed"},
+  {"payment_id": "PAY009", "order_id": "ORD012", "amount": 449.99, "payment_method": "credit_card", "payment_date": "2024-01-20", "status": "completed"},
+  {"payment_id": "PAY010", "order_id": "ORD013", "amount": 149.99, "payment_method": "debit_card", "payment_date": "2024-01-21", "status": "completed"},
+  {"payment_id": "PAY011", "order_id": "ORD015", "amount": 599.99, "payment_method": "credit_card", "payment_date": "2024-01-22", "status": "completed"},
+  {"payment_id": "PAY012", "order_id": "ORD016", "amount": 239.97, "payment_method": "paypal", "payment_date": "2024-01-22", "status": "completed"},
+  {"payment_id": "PAY013", "order_id": "ORD018", "amount": 599.98, "payment_method": "credit_card", "payment_date": "2024-01-23", "status": "completed"},
+  {"payment_id": "PAY014", "order_id": "ORD019", "amount": 449.99, "payment_method": "debit_card", "payment_date": "2024-01-24", "status": "completed"},
+  {"payment_id": "PAY015", "order_id": "ORD021", "amount": 59.98, "payment_method": "credit_card", "payment_date": "2024-01-25", "status": "completed"},
+  {"payment_id": "PAY016", "order_id": "ORD022", "amount": 449.97, "payment_method": "paypal", "payment_date": "2024-01-25", "status": "completed"},
+  {"payment_id": "PAY017", "order_id": "ORD023", "amount": 99.90, "payment_method": "debit_card", "payment_date": "2024-01-26", "status": "completed"},
+  {"payment_id": "PAY018", "order_id": "ORD024", "amount": 79.99, "payment_method": "credit_card", "payment_date": "2024-01-26", "status": "completed"}
+]

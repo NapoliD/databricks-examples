@@ -1,0 +1,187 @@
+# =============================================================================
+# MLflow Churn Prediction - Configuration
+# =============================================================================
+# NOTE: All data in this project is FICTIONAL and for demonstration purposes only.
+# This configuration shows production-ready patterns for educational portfolios.
+# =============================================================================
+
+# Project Information
+project:
+  name: "churn_prediction"
+  description: "Customer churn prediction using MLflow on Databricks"
+  author: "Portfolio Demo"
+  is_fictional_data: true
+
+# Data Paths
+paths:
+  silver: "/mnt/silver/"
+  gold: "/mnt/gold/"
+  features: "/mnt/gold/ml_features/customer_churn_features"
+  predictions: "/mnt/gold/ml_predictions/churn_scores"
+  reports: "/mnt/gold/ml_reports/"
+
+# Feature Store Configuration
+feature_store:
+  database: "churn_features"
+  table_name: "customer_churn_features"
+  primary_key: "customer_id"
+  description: "Customer features for churn prediction"
+
+# Feature Engineering
+features:
+  # Churn definition
+  churn_threshold_days: 30
+
+  # RFM features
+  rfm:
+    - recency_days
+    - frequency
+    - monetary_value
+    - avg_order_value
+    - max_order_value
+    - min_order_value
+
+  # Behavioral features
+  behavioral:
+    - cancellation_rate
+    - pending_rate
+    - unique_products
+    - avg_basket_size
+    - total_items
+    - payment_methods_used
+
+  # Temporal features
+  temporal:
+    - days_since_registration
+    - days_since_first_order
+    - days_since_last_order
+    - active_period_days
+    - purchase_velocity
+    - days_to_first_order
+
+# MLflow Configuration
+mlflow:
+  experiment_name: "/Users/demo/churn_prediction_experiment"
+  model_name: "churn_prediction_model"
+  tracking_uri: "databricks"  # Use Databricks-hosted MLflow
+
+# Model Training
+training:
+  test_size: 0.2
+  random_state: 42
+  cv_folds: 5
+
+  # Models to train
+  models:
+    logistic_regression:
+      enabled: true
+      params:
+        penalty: "l2"
+        solver: "lbfgs"
+        max_iter: 1000
+        C: 1.0
+
+    random_forest:
+      enabled: true
+      params:
+        n_estimators: 100
+        max_depth: 10
+        min_samples_split: 5
+        min_samples_leaf: 2
+
+    xgboost:
+      enabled: true
+      params:
+        n_estimators: 100
+        max_depth: 6
+        learning_rate: 0.1
+        subsample: 0.8
+        colsample_bytree: 0.8
+
+  # Hyperparameter search
+  hyperparameter_search:
+    enabled: true
+    method: "grid"  # grid, random, or bayesian
+    param_grid:
+      n_estimators: [50, 100, 150]
+      max_depth: [5, 8, 10]
+      min_samples_split: [2, 5, 10]
+
+# Model Registry
+registry:
+  model_name: "churn_prediction_model"
+  stages:
+    - "None"
+    - "Staging"
+    - "Production"
+    - "Archived"
+
+  # Promotion criteria
+  promotion_criteria:
+    min_roc_auc: 0.75
+    min_precision: 0.60
+    min_recall: 0.50
+
+# Batch Inference
+inference:
+  # Risk thresholds
+  risk_thresholds:
+    high: 0.7
+    medium: 0.4
+
+  # Output partitioning
+  partition_by: "churn_risk"
+
+  # Monitoring
+  monitoring:
+    track_distribution: true
+    alert_on_drift: true
+    drift_threshold: 0.1
+
+# Scheduling (Databricks Workflows)
+scheduling:
+  feature_engineering:
+    cron: "0 0 5 * * ?"  # Daily at 5 AM
+    timezone: "America/Buenos_Aires"
+
+  batch_scoring:
+    cron: "0 0 6 * * ?"  # Daily at 6 AM
+    timezone: "America/Buenos_Aires"
+
+  # Cluster configuration
+  cluster:
+    num_workers: 2
+    spark_version: "13.3.x-scala2.12"
+    node_type_id: "i3.xlarge"
+    autoscale:
+      min_workers: 1
+      max_workers: 4
+
+# Notifications
+notifications:
+  email:
+    on_failure: ["alerts@company.com"]
+    on_success: []
+  slack:
+    webhook_url: ""  # Configure in secrets
+    channel: "#ml-alerts"
+
+# Data Quality
+data_quality:
+  # Feature validation rules
+  validations:
+    - column: "customer_id"
+      rule: "not_null"
+    - column: "recency_days"
+      rule: "positive"
+    - column: "frequency"
+      rule: "positive"
+    - column: "monetary_value"
+      rule: "positive"
+    - column: "cancellation_rate"
+      rule: "range"
+      min: 0
+      max: 100
+
+  # Alert thresholds
+  alert_threshold: 0.05  # Alert if >5% invalid records

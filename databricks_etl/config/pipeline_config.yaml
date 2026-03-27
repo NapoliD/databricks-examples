@@ -1,0 +1,73 @@
+# Pipeline Configuration
+# Configuración centralizada para el pipeline ETL
+
+environment: development
+
+# Paths
+paths:
+  raw: "/mnt/raw/"
+  bronze: "/mnt/bronze/"
+  silver: "/mnt/silver/"
+  gold: "/mnt/gold/"
+  checkpoints: "/mnt/checkpoints/"
+
+# Data sources
+sources:
+  orders:
+    path: "orders/"
+    format: "csv"
+    schema_enforcement: true
+
+  customers:
+    path: "customers/"
+    format: "csv"
+    schema_enforcement: true
+
+  payments:
+    path: "payments/"
+    format: "json"
+    schema_enforcement: true
+
+# Processing settings
+processing:
+  batch_size: 10000
+  max_files_per_trigger: 1
+  shuffle_partitions: 200
+  enable_aqe: true
+
+# Delta Lake settings
+delta:
+  retention_hours: 168
+  optimize_frequency: "daily"
+  zorder_columns:
+    orders: ["order_date", "customer_id"]
+    customers: ["country"]
+    payments: ["payment_date"]
+
+# Data quality thresholds
+data_quality:
+  null_threshold: 0.01
+  duplicate_threshold: 0.0
+  min_records: 100
+  fail_on_error: true
+
+# Streaming settings
+streaming:
+  trigger_interval: "1 minute"
+  watermark_delay: "10 minutes"
+  window_duration: "5 minutes"
+
+# Notifications
+notifications:
+  email:
+    enabled: false
+    recipients: []
+  slack:
+    enabled: false
+    webhook_url: ""
+
+# Monitoring
+monitoring:
+  log_level: "INFO"
+  metrics_enabled: true
+  alerting_enabled: false

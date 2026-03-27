@@ -1,0 +1,16 @@
+customer_id,name,email,country,registration_date
+CUST001,Juan Garcia,juan.garcia@email.com,Argentina,2023-06-15
+CUST002,Maria Lopez,maria.lopez@email.com,Mexico,2023-07-20
+CUST003,Carlos Rodriguez,carlos.rodriguez@email.com,Colombia,2023-08-10
+CUST004,Ana Martinez,ana.martinez@email.com,Chile,2023-09-05
+CUST005,Pedro Sanchez,pedro.sanchez@email.com,Peru,2023-09-15
+CUST006,Laura Fernandez,laura.fernandez@email.com,Argentina,2023-10-01
+CUST007,Diego Gonzalez,diego.gonzalez@email.com,Uruguay,2023-10-20
+CUST008,Sofia Ramirez,sofia.ramirez@email.com,Ecuador,2023-11-05
+CUST009,Miguel Torres,miguel.torres@email.com,Venezuela,2023-11-15
+CUST010,Carmen Ruiz,carmen.ruiz@email.com,Bolivia,2023-12-01
+CUST011,Roberto Diaz,roberto.diaz@email.com,Paraguay,2023-12-10
+CUST012,Patricia Moreno,patricia.moreno@email.com,Mexico,2023-12-20
+CUST013,Fernando Castro,fernando.castro@email.com,Argentina,2024-01-05
+CUST014,Isabel Vargas,isabel.vargas@email.com,Colombia,2024-01-10
+CUST015,Andres Herrera,andres.herrera@email.com,Chile,2024-01-15

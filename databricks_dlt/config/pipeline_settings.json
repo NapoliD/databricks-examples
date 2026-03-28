@@ -1,0 +1,102 @@
+{
+  "_comment": "Delta Live Tables Pipeline Configuration - ALL DATA IS FICTIONAL",
+  "_note": "This configuration is for demonstration purposes only",
+
+  "name": "ecommerce_dlt_pipeline",
+  "edition": "ADVANCED",
+  "development": true,
+  "continuous": false,
+
+  "clusters": [
+    {
+      "label": "default",
+      "autoscale": {
+        "min_workers": 1,
+        "max_workers": 4,
+        "mode": "ENHANCED"
+      },
+      "spark_conf": {
+        "spark.databricks.delta.preview.enabled": "true"
+      }
+    }
+  ],
+
+  "libraries": [
+    {
+      "notebook": {
+        "path": "/Repos/demo/databricks_dlt/pipelines/01_bronze_ingestion"
+      }
+    },
+    {
+      "notebook": {
+        "path": "/Repos/demo/databricks_dlt/pipelines/02_silver_transformations"
+      }
+    },
+    {
+      "notebook": {
+        "path": "/Repos/demo/databricks_dlt/pipelines/03_gold_aggregations"
+      }
+    },
+    {
+      "notebook": {
+        "path": "/Repos/demo/databricks_dlt/pipelines/04_cdc_pipeline"
+      }
+    }
+  ],
+
+  "target": "dlt_ecommerce_demo",
+
+  "catalog": "main",
+
+  "configuration": {
+    "raw_path": "/mnt/raw/",
+    "bronze_path": "/mnt/bronze/",
+    "silver_path": "/mnt/silver/",
+    "gold_path": "/mnt/gold/",
+    "cdc_path": "/mnt/cdc/",
+    "is_fictional_data": "true"
+  },
+
+  "channel": "PREVIEW",
+
+  "photon": true,
+
+  "notifications": [
+    {
+      "email_recipients": [],
+      "alerts": {
+        "on_failure": true,
+        "on_success": false,
+        "on_flow_failure": true
+      }
+    }
+  ],
+
+  "data_quality": {
+    "expectations": {
+      "on_violation": "warn",
+      "quarantine_enabled": true
+    }
+  },
+
+  "_documentation": {
+    "purpose": "E-commerce DLT pipeline demonstration",
+    "author": "Portfolio Demo",
+    "data_disclaimer": "ALL DATA PROCESSED IS FICTIONAL",
+    "layers": {
+      "bronze": "Raw data ingestion with quality expectations",
+      "silver": "Cleaned and enriched data",
+      "gold": "Business aggregations and KPIs",
+      "cdc": "Change Data Capture with SCD Type 1 and 2"
+    },
+    "features_demonstrated": [
+      "Declarative table definitions",
+      "Data quality expectations",
+      "Auto Loader streaming",
+      "CDC with apply_changes()",
+      "SCD Type 1 and Type 2",
+      "Python and SQL pipelines",
+      "Quarantine tables"
+    ]
+  }
+}
